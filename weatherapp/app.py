@@ -95,7 +95,6 @@ class App:
         except:
             return None
 
-    from django.utils import timezone
 
     def get_last_10(self):
         last_10_results = []
