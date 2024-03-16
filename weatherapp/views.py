@@ -5,6 +5,10 @@ from django.urls import reverse
 from weatherapp.app import App
 from weatherapp.models import RandomCityData
 
+try:
+    function = App()
+except:
+    pass
 
 
 def home(request):
@@ -13,9 +17,9 @@ def home(request):
     except Exception as e:
         raise Http404("Service Unavailable Currently.")
 
+
 def randomcities(request):
     try:
-        function = App()
         if request.method == "POST":
             action = request.POST.get("action")
             if action == "generate":
@@ -39,9 +43,9 @@ def randomcities(request):
     except Exception as e:
         raise Http404("Service Unavailable Currently.")
 
+
 def search_city(request):
     try:
-        function = App()
         if request.method == "POST":
             search_query = request.POST.get("search_query")
             cities_data = function.search_city(search_query)
@@ -51,9 +55,9 @@ def search_city(request):
     except Exception as e:
         raise Http404("Service Unavailable Currently.")
 
+
 def comparelast10(request):
     try:
-        function = App()
         if request.method == "GET":
             last_10_results, last_10_stamps = function.get_last_10()
             zipped_results = zip(last_10_results, last_10_stamps)
@@ -61,9 +65,9 @@ def comparelast10(request):
     except Exception as e:
         raise Http404("Service Unavailable Currently.")
 
+
 def refresh_data(request):
     try:
-        function = App()
         if request.method == "GET":
             last_10_results, last_10_stamps = function.get_last_10()
             zipped_results = zip(last_10_results, last_10_stamps)
