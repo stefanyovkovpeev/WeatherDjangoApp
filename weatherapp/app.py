@@ -5,8 +5,9 @@ import random
 import requests
 from django.utils import timezone
 from weatherapp.models import RandomCityData
+from decouple import config
 
-
+API = config('YOUR_API_KEY')
 class App:
 
     def __init__(self):
@@ -43,7 +44,7 @@ class App:
         for city in cities:
             params = {
                 'q': city,
-                'appid': "***",
+                'appid': API,
                 'units': 'metric'
             }
             response = requests.get(base_url, params=params)
@@ -77,7 +78,7 @@ class App:
             base_url = "http://api.openweathermap.org/data/2.5/weather"
             params = {
                 'q': city,
-                'appid': "***",
+                'appid': API,
                 'units': 'metric'
             }
             response = requests.get(base_url, params=params)
