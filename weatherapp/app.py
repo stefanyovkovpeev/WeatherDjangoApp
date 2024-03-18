@@ -1,3 +1,4 @@
+import os
 from random import random
 import json
 import gzip
@@ -7,7 +8,15 @@ from django.utils import timezone
 from weatherapp.models import RandomCityData
 from decouple import config
 
-API = config('YOUR_API_KEY')
+try:
+    API = os.environ.get("API")
+except:
+    pass
+
+try:
+    API = config('YOUR_API_KEY')
+except:
+    pass
 class App:
 
     def __init__(self):
